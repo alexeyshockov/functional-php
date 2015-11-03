@@ -23,20 +23,27 @@
 namespace Functional;
 
 use Functional\Exceptions\InvalidArgumentException;
-use Functional\Sequences\LinearSequence;
-use Traversable;
+use Functional\Sequences\RewindableGenerator;
+use Iterator;
 
 /**
  * Returns an infinite, traversable sequence that linearly grows by given amount
  *
  * @param integer $start
  * @param integer $amount
- * @return Traversable
+ * @return Iterator
  */
 function sequence_linear($start, $amount)
 {
     InvalidArgumentException::assertIntegerGreaterThanOrEqual($start, 0, __FUNCTION__, 1);
     InvalidArgumentException::assertInteger($amount, __FUNCTION__, 2);
 
-    return new LinearSequence($start, $amount);
+    return new RewindableGenerator(function () use ($start, $amount) {
+        $current = $start;
+        while (true) {
+            yield $current;
+
+            $current += $amount;
+        }
+    });
 }

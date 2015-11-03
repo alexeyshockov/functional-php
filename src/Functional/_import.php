@@ -24,8 +24,7 @@
 call_user_func(function() {
     static $symbols = [
         'Functional\\Exceptions\\InvalidArgumentException',
-        'Functional\\Sequences\\LinearSequence',
-        'Functional\\Sequences\\ExponentialSequence',
+        'Functional\\Sequences\\RewindableGenerator',
         'Functional\\every',
         'Functional\\some',
         'Functional\\difference',
