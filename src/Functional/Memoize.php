@@ -54,7 +54,7 @@ function memoize(callable $callback = null, $arguments = [], $key = null)
         $keyGenerator = function($value) use (&$keyGenerator) {
             $type = gettype($value);
             if ($type === 'array') {
-                $key = join(':', map($value, $keyGenerator));
+                $key = implode(':', map($value, $keyGenerator));
             } elseif ($type === 'object') {
                 $key = get_class($value) . ':' . spl_object_hash($value);
             } else {

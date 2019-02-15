@@ -36,3 +36,15 @@ function compose(callable $f, callable $g)
         return $f($g(...$args));
     };
 }
+
+function composeN(callable $f, callable ...$gN)
+{
+    return function (...$args) use ($f, $gN) {
+        $result = '';
+        foreach ($gN as $g) {
+
+        }
+
+        return $f($g(...$args));
+    };
+}
